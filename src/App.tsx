@@ -1,33 +1,30 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import { Tab, Box } from '@mui/material'
+import TabContext from '@mui/lab/TabContext';
+import TabList from '@mui/lab/TabList';
+import TabPanel from '@mui/lab/TabPanel';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [value, setValue] = useState(0)
+
+  const handleTabChange = (e: React.SyntheticEvent, newValue: number) => setValue(newValue)
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <h1>Recipe Finder</h1>
+    <Box sx={{ width: '100%', typography: 'body1' }}>
+    <TabContext value={value}>
+        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+          <TabList onChange={handleTabChange} aria-label="lab API tabs example">
+            <Tab label="Search Recipes" value="1" />
+            <Tab label="Favorites" value="2" />
+          </TabList>
+        </Box>
+        <TabPanel value="1">Search</TabPanel>
+        <TabPanel value="2">Favorites</TabPanel>
+      </TabContext>
+    </Box>
     </>
   )
 }
