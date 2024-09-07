@@ -26,7 +26,6 @@ export const useFetch = () => {
         fetchRecipes()
     })
 
-
   return ({ data, isLoading, error, searchTerm })
 }
 
