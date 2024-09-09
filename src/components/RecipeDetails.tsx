@@ -54,7 +54,7 @@ export const RecipeDetails = ({ recipe }: RecipeDetailsProps) => {
             { recipe.label }
             </Typography>
             <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-            { recipe.ingredientLines.map((ingredient) => <p>{ingredient}</p>)}
+            { recipe.ingredientLines.map((ingredient, index) => <ul key={index}><li>{ingredient}</li></ul>)}
             </Typography>
         </CardContent>
         <CardActions>
