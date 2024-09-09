@@ -6,6 +6,8 @@ export interface SearchResultsContextTypes {
   searchTerm: string;
   isCardSelected: boolean;
   setIsCardSelected: Dispatch<SetStateAction<boolean>>;
+  favorites: Recipe[];
+  setFavorites: Dispatch<SetStateAction<never[]>>;
 }
 
 export interface Recipe {

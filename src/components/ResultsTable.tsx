@@ -38,13 +38,13 @@ export const ResultsTable = () => {
         <RecipeDetails /> :
         <TableContainer component={Paper}>
             <Table>
-                <TableHead>
-                    <TableRow>
-                        <TableCell>Thumbnail</TableCell>
-                        <TableCell>Name</TableCell>
-                        <TableCell>Description</TableCell>
-                    </TableRow>
-                </TableHead>
+              <TableHead>
+                  <TableRow>
+                      <TableCell></TableCell>
+                      <TableCell>Name</TableCell>
+                      <TableCell>Description</TableCell>
+                  </TableRow>
+              </TableHead>
                 <TableBody>
                 {filterData?.map(({ recipe }, index) => (
                     <TableRow key={index}>

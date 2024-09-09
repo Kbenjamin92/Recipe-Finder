@@ -7,6 +7,7 @@ export const Results = createContext<SearchResultsContextTypes | undefined>(unde
 export const SearchResultsProvider = ({ children }: any) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [isCardSelected, setIsCardSelected] = useState<boolean>(false)
+  const [favorites, setFavorites] = useState([])
   
   const handleSearchTerm = (event: React.ChangeEvent<HTMLInputElement>) => setSearchTerm(event.target.value);
 
@@ -18,7 +19,10 @@ export const SearchResultsProvider = ({ children }: any) => {
       handleSearchTerm, 
       searchTerm,
       isCardSelected,
-      setIsCardSelected
+      setIsCardSelected,
+      favorites,
+      setFavorites
+
        }}>
       { children }
     </Results.Provider>

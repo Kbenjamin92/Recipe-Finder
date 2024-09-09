@@ -18,9 +18,14 @@ export const RecipeDetails = () => {
       throw new Error('search error')
     }
   
-    const { data, searchTerm, setIsCardSelected } = context;
+    const { data, searchTerm, setIsCardSelected, setFavorites } = context;
 
-    const filterDetails = data?.hits.filter((results) => results.recipe.label.toLowerCase().includes(searchTerm.toLowerCase()))
+    const filterDetails = data?.hits.filter((results) => results.recipe.label.toLowerCase().includes(searchTerm.toLowerCase()));
+
+    const addRecipeToFavorites= (id: number) => {
+       const favoriteRecipe = data?.hits?.filter((r, index) => index === id);
+        // setFavorites(favoriteRecipe);
+      }
 
   return (
     <div>
@@ -30,7 +35,6 @@ export const RecipeDetails = () => {
                 underline="hover"
                 sx={{ display: 'flex', alignItems: 'center' }}
                 color="inherit"
-                href="/"
                 >
                 <SearchIcon sx={{ mr: 0.5 }} fontSize="inherit" />
                 Search
@@ -55,7 +59,7 @@ export const RecipeDetails = () => {
             </CardContent>
             <CardActions>
                 <Button size="small" href={`${recipe.url}`} target='blank' rel="noopener noreferrer">Learn More</Button>
-                <Button size="small">Add to favorites</Button>
+                <Button size="small" onClick={() => setFavorites}>Add to favorites</Button>
             </CardActions>
             </Card>
             ))
