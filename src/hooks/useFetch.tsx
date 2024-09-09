@@ -16,7 +16,6 @@ export const useFetch = (value?: string) => {
             try {
                 const req = await axios.get<SearchResultsTypes>(`https://api.edamam.com/api/recipes/v2/?type=public&q=${value}&app_id=${apiID}&app_key=${apiKey}`);
                 setData(req.data);
-                console.log(req.data);
             } catch (err) {
                 setError('Keyword or Ingredients is required');
             } finally {
