@@ -6,7 +6,7 @@ import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import { SearchRecipes } from './components/SearchRecipes';
 import { SearchResultsProvider } from './context/SearchResultsProvider';
-
+import { ResultsTable } from './components/ResultsTable';
 
 function App() {
   const [value, setValue] = useState(0)
@@ -27,6 +27,7 @@ function App() {
         <TabPanel value="0">
           <SearchResultsProvider>
             <SearchRecipes />
+            <ResultsTable />
           </SearchResultsProvider>
         </TabPanel>
         <TabPanel value="1">Favorites</TabPanel>
