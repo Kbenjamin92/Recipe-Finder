@@ -18,7 +18,7 @@ export const useFetch = (value?: string) => {
                 setData(req.data);
                 console.log(req.data);
             } catch (err) {
-                setError('Keyword or Ingredients is required')
+                setError('Keyword or Ingredients is required');
             } finally {
                 setIsLoading(false);
             }

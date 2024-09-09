@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
@@ -10,32 +10,31 @@ import { useFetch } from '../hooks/useFetch'
 import Paper from '@mui/material/Paper'
 import Button from '@mui/material/Button'
 import { RecipeDetails } from './RecipeDetails'
+import { Recipe } from '../interface/interface'
 
 export const ResultsTable = () => {
-
   const { isLoading } = useFetch();
-
   const context = useContext(Results);
+  const [selectedRecipe, setSelectedRecipe] = useState<Recipe>();
 
   if (!context) {
-    throw new Error('search error')
+    throw new Error('There is no data available')
   }
-
   const { data, searchTerm, isCardSelected, setIsCardSelected } = context;
+  const filterData = data?.hits.filter((results) => results.recipe.label.toLowerCase().includes(searchTerm.toLowerCase()));
 
-  const filterData = data?.hits.filter((results) => results.recipe.label.toLowerCase().includes(searchTerm.toLowerCase()))
-
-  const filterOutDetailsCard = (id: number) => {
-    filterData?.filter((r, index) => index === id);
+  const handleSelectRecipe = (index: number) => {
+    const selected = filterData?.[index]?.recipe;
+    setSelectedRecipe(selected); 
     setIsCardSelected(true);
-  }
+  };
 
   return (
     <div>
         {
-        isLoading && !data ? <h2>Loading...</h2> :
-        isCardSelected ?
-        <RecipeDetails /> :
+        isLoading && !data ? ( <h2>Loading...</h2> ) :
+        selectedRecipe && isCardSelected ?
+        ( <RecipeDetails recipe={selectedRecipe} /> ) :
         <TableContainer component={Paper}>
             <Table>
               <TableHead>
@@ -52,7 +51,7 @@ export const ResultsTable = () => {
                         <img src={recipe.image} alt={recipe.label} style={{ width: '100px', height: 'auto' }} />
                     </TableCell>
                     <TableCell>{recipe.label}</TableCell>
-                    <TableCell><Button variant='contained' color='primary' onClick={() => filterOutDetailsCard(index)}>View Recipe</Button></TableCell>
+                    <TableCell><Button variant='contained' color='primary' onClick={() => handleSelectRecipe(index)}>View Recipe</Button></TableCell>
                     </TableRow>
                 ))}
                 </TableBody>

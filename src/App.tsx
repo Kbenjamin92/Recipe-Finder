@@ -7,15 +7,17 @@ import TabPanel from '@mui/lab/TabPanel';
 import { SearchRecipes } from './components/SearchRecipes';
 import { SearchResultsProvider } from './context/SearchResultsProvider';
 import { ResultsTable } from './components/ResultsTable';
+import { FavoriteRecipes } from './components/FavoriteRecipes';
 
 function App() {
-  const [value, setValue] = useState(0)
+  const [value, setValue] = useState(0);
 
-  const handleTabChange = (e: React.SyntheticEvent, newValue: number) => setValue(newValue)
+  const handleTabChange = (e: React.SyntheticEvent, newValue: number) => setValue(newValue);
 
   return (
     <>
     <h1>Recipe Finder</h1>
+    <SearchResultsProvider>
     <Box sx={{ width: '100%', typography: 'body1' }}>
     <TabContext value={value}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
@@ -25,14 +27,15 @@ function App() {
           </TabList>
         </Box>
         <TabPanel value="0">
-          <SearchResultsProvider>
-            <SearchRecipes />
-            <ResultsTable />
-          </SearchResultsProvider>
+          <SearchRecipes />
+          <ResultsTable />
         </TabPanel>
-        <TabPanel value="1">Favorites</TabPanel>
+        <TabPanel value="1">
+          <FavoriteRecipes />
+        </TabPanel>
       </TabContext>
     </Box>
+    </SearchResultsProvider>
     </>
   )
 }
