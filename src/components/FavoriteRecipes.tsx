@@ -8,6 +8,8 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Results } from '../context/SearchResultsProvider';
 import Button from '@mui/material/Button';
+import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
+import { red } from '@mui/material/colors'
 
 export const FavoriteRecipes = () => {
     const context = useContext(Results);
@@ -15,6 +17,11 @@ export const FavoriteRecipes = () => {
         throw new Error('There is no data available')
     }
     const { favorites } = context;
+
+    const removeFavoriteItem = (item: string) => {
+        // logic to remove item from the favorites list
+        console.log(item)
+    }
 
   return (
     <div>
@@ -26,6 +33,7 @@ export const FavoriteRecipes = () => {
                 <TableCell></TableCell>
                 <TableCell align="left">Name</TableCell>
                 <TableCell>Description</TableCell>
+                <TableCell></TableCell>
             </TableRow>
             </TableHead>
             <TableBody>
@@ -38,7 +46,8 @@ export const FavoriteRecipes = () => {
                         <img src={f.image} alt={f.label} style={{ width: '100px', height: 'auto' }} />
                     </TableCell>
                     <TableCell align="left">{f.label}</TableCell>
-                    <TableCell align="left"><Button variant='contained' color='primary' onClick={() => console.log(index)}>View Recipe</Button></TableCell>
+                    <TableCell align="left"><Button variant='contained' onClick={() => console.log(index)}>View Recipe</Button></TableCell>
+                    <TableCell><Button onClick={() => removeFavoriteItem(f.label)}><RemoveCircleIcon fontSize='large' sx={{ color: red[600] }}/></Button></TableCell>
                 </TableRow>
             ))}
             </TableBody>

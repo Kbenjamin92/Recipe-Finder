@@ -29,7 +29,7 @@ export const RecipeDetails = ({ recipe }: RecipeDetailsProps) => {
             const updatedFavorites = [recipe, ...favorites];
             setFavorites(updatedFavorites); 
         }
-        setTriggerAlert(true)
+        setTriggerAlert(true);
     }
       
   return (
@@ -41,7 +41,7 @@ export const RecipeDetails = ({ recipe }: RecipeDetailsProps) => {
                 sx={{ display: 'flex', alignItems: 'center' }}
                 color="inherit"
                 >
-                <SearchIcon sx={{ mr: 0.5 }} fontSize="inherit" />
+                    <SearchIcon sx={{ mr: 0.5 }} fontSize="inherit" />
                 Back to search
                 </Link>
             </Button>

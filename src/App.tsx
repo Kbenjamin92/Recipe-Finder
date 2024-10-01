@@ -10,9 +10,9 @@ import { ResultsTable } from './components/ResultsTable';
 import { FavoriteRecipes } from './components/FavoriteRecipes';
 
 function App() {
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState('1');
 
-  const handleTabChange = (e: React.SyntheticEvent, newValue: number) => setValue(newValue);
+  const handleTabChange = (e: React.SyntheticEvent, newValue: string) => setValue(newValue);
 
   return (
     <>

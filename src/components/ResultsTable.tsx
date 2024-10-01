@@ -27,6 +27,7 @@ export const ResultsTable = () => {
     const selected = filterData?.[index]?.recipe;
     setSelectedRecipe(selected); 
     setIsCardSelected(true);
+    console.log(filterData)
   };
 
   return (
