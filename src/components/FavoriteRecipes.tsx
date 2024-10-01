@@ -24,8 +24,8 @@ export const FavoriteRecipes = () => {
             <TableHead>
             <TableRow>
                 <TableCell></TableCell>
-                <TableCell align="right">Name</TableCell>
-                <TableCell align="right">Description</TableCell>
+                <TableCell align="left">Name</TableCell>
+                <TableCell>Description</TableCell>
             </TableRow>
             </TableHead>
             <TableBody>
@@ -34,12 +34,11 @@ export const FavoriteRecipes = () => {
                 key={index}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 >
-                
-                <TableCell align="right">
-                    <img src={f.image} alt={f.label} style={{ width: '100px', height: 'auto' }} />
-                </TableCell>
-                <TableCell align="left">{f.label}</TableCell>
-                <TableCell align="left"><Button variant='contained' color='primary' onClick={() => console.log(index)}>View Recipe</Button></TableCell>
+                    <TableCell align="right">
+                        <img src={f.image} alt={f.label} style={{ width: '100px', height: 'auto' }} />
+                    </TableCell>
+                    <TableCell align="left">{f.label}</TableCell>
+                    <TableCell align="left"><Button variant='contained' color='primary' onClick={() => console.log(index)}>View Recipe</Button></TableCell>
                 </TableRow>
             ))}
             </TableBody>

@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -10,12 +10,14 @@ import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
 import SearchIcon from '@mui/icons-material/Search';
 import { Recipe } from '../interface/interface';
+import Alert from '@mui/material/Alert'
 
 interface RecipeDetailsProps {
     recipe: Recipe;
 }
 
 export const RecipeDetails = ({ recipe }: RecipeDetailsProps) => {
+    const [triggerAlert, setTriggerAlert] = useState(false);
     const context = useContext(Results);
     if (!context) {
       throw new Error('There is no data available')
@@ -27,6 +29,7 @@ export const RecipeDetails = ({ recipe }: RecipeDetailsProps) => {
             const updatedFavorites = [recipe, ...favorites];
             setFavorites(updatedFavorites); 
         }
+        setTriggerAlert(true)
     }
       
   return (
@@ -62,6 +65,9 @@ export const RecipeDetails = ({ recipe }: RecipeDetailsProps) => {
             <Button size="small" onClick={() => addRecipeToFavorites()}>Add to favorites</Button>
         </CardActions>
         </Card>
+        {triggerAlert && (
+            <Alert severity="success">Recipe successfully added to favorites!</Alert>
+        )}
     </div>
   )
 }

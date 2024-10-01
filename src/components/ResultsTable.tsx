@@ -35,7 +35,9 @@ export const ResultsTable = () => {
         isLoading && !data ? ( <h2>Loading...</h2> ) :
         selectedRecipe && isCardSelected ?
         ( <RecipeDetails recipe={selectedRecipe} /> ) :
-        <TableContainer component={Paper}>
+        <>
+        {filterData?.length !== 0 ?  
+        (<TableContainer component={Paper}>
             <Table>
               <TableHead>
                   <TableRow>
@@ -44,19 +46,21 @@ export const ResultsTable = () => {
                       <TableCell>Description</TableCell>
                   </TableRow>
               </TableHead>
+              {filterData?.map(({ recipe }, index) => (
                 <TableBody>
-                {filterData?.map(({ recipe }, index) => (
                     <TableRow key={index}>
                     <TableCell>
-                        <img src={recipe.image} alt={recipe.label} style={{ width: '100px', height: 'auto' }} />
+                        <img src={recipe.image} alt={recipe.label} style={{ width: '100px', height: 'auto'}} />
                     </TableCell>
                     <TableCell>{recipe.label}</TableCell>
                     <TableCell><Button variant='contained' color='primary' onClick={() => handleSelectRecipe(index)}>View Recipe</Button></TableCell>
                     </TableRow>
-                ))}
                 </TableBody>
+                ))}
             </Table>
-        </TableContainer>
+        </TableContainer>)
+       : null }
+        </>
         }
     </div>
   )
